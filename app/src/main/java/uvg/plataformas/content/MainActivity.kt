@@ -13,7 +13,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import uvg.plataformas.content.ejerciciosClase.Pantalla2
-import uvg.plataformas.content.ejerciciosClase.SpinnerWheelExample
 import uvg.plataformas.content.ui.theme.ContentTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +22,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             ContentTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    SpinnerWheelExample(modifier = Modifier.fillMaxSize().padding(innerPadding))
                 }
             }
         }
