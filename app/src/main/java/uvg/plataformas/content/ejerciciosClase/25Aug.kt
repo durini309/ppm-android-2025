@@ -5,14 +5,21 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -43,6 +50,15 @@ val students = listOf(
     "Carlos",
     "Laura",
     "Diego",
+)
+
+val movies = listOf(
+    "Avengers",
+    "Spiderman",
+    "Conjuro",
+    "Rapido y F",
+    "Harry Potter",
+    "Interstelar"
 )
 
 @Composable
@@ -115,11 +131,50 @@ private fun ContactCard(
     }
 }
 
+@Composable
+private fun MovieList(
+    movies: List<String>,
+    modifier: Modifier = Modifier
+) {
+    Column(modifier) {
+        Text(
+            text = "Accion",
+            style = MaterialTheme.typography.headlineMedium,
+        )
+        LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            contentPadding = PaddingValues(horizontal = 8.dp)
+        ) {
+            items(movies) { movie ->
+                ElevatedCard(
+                    modifier = Modifier.size(160.dp, 80.dp),
+                    colors = CardDefaults.elevatedCardColors(
+                        containerColor = MaterialTheme.colorScheme.primaryContainer
+                    )
+                ) {
+                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        Text(movie)
+                    }
+                }
+            }
+        }
+    }
+}
+
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-private fun PreviewContactCard() {
+private fun PreviewContactList() {
     ContentTheme {
         StudentList(students)
+
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun PreviewMovieList() {
+    ContentTheme {
+        MovieList(movies)
 
     }
 }
